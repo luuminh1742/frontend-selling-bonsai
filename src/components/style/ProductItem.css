@@ -1,0 +1,104 @@
+:root{
+    --color-focus:#79a206
+}
+
+.product-items{
+    padding: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.single-product{
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px rgb(233, 233, 233);
+}
+
+.single-product-top{
+    /* height: 300px; */
+    position: relative;
+    overflow: hidden;
+}
+.single-product-bottom{
+    padding: 10px 0px;
+    border-top: 1px solid #ddd;
+}
+
+.single-product-top img{
+    width: -webkit-fill-available;
+    margin: 0 auto;
+    height: 300px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.price_product{
+    color: var(--color-focus);
+    font-weight: bold;
+    font-size: 20px;
+}
+.price_product span{
+    color: rgb(54, 54, 54);
+    font-weight: normal !important;
+    position: relative;
+    top: 5px;
+    text-decoration-line: line-through;
+    font-size: 14px;
+}
+.label_discount{
+    position: absolute;
+    background-color: #f00;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    left: 10px;
+    top: 10px;
+}
+
+.action-link{
+    position: absolute;
+    z-index: 200;
+    background-color: #fff;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    padding: 10px ;
+    
+}
+.action-link div{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.action-link div li{
+    list-style: none;
+}
+.action-link div li button{
+    border: none;
+    padding: 10px;
+    border-radius: 50px;
+    width: 45px;
+    height: 45px;
+    
+}
+.link-product-detail{
+    text-decoration: none;
+    font-weight: bold;
+    color: #000;
+}
+.link-product-detail:hover{
+    color: var(--color-focus);
+}
+.action-link div li button:hover{
+    background-color: var(--color-focus);
+    color: #fff;
+}
+
+.action-link{
+    display: none;
+}
+
+
+.product-items:hover .action-link{
+
+    display: initial;
+}

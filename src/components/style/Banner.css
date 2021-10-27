@@ -1,0 +1,27 @@
+.banner{
+    background: #f0f0f0;
+    border-bottom: 1px solid #e1e1e1;
+    padding: 50px 0;
+}
+
+.banner h3{
+    font-size: 42px;
+    line-height: 50px;
+    font-family: "Lora", serif;
+    margin-bottom: 9px;
+}
+
+.banner ul {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.banner ul li{
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 14px;
+    margin-right: 3px;
+    padding-right: 13px;
+    position: relative;
+}

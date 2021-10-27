@@ -1,0 +1,57 @@
+:root{
+    --color-focus:#79a206
+}
+
+/* Profile */
+
+.profile-menu{
+
+}
+.profile-menu ul{
+    list-style: none;
+    padding-left: 0px !important;
+}
+
+.profile-menu ul li{
+    padding: 15px;
+    margin: 5px 0px;
+    color: #000;
+    cursor: pointer;
+}
+.profile-menu ul li:hover{
+    color: #fff !important;
+    background-color: rgb(24, 24, 24);
+    border-radius: 10px;
+}
+.profile-menu-active{
+    color: #fff !important;
+    background-color: rgb(24, 24, 24);
+    border-radius: 10px;
+}
+/* End profile */
+
+/* Orders */
+
+.orders-menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 15px;
+}
+.orders-menu div{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.orders-menu div:hover{
+    color: var(--color-focus);
+    border-bottom: 2px solid var(--color-focus);
+}
+
+.order_menu_active{
+    color: var(--color-focus);
+    border-bottom: 2px solid var(--color-focus);
+}
+
+
+/* End order */

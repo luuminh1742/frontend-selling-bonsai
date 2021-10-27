@@ -1,0 +1,20 @@
+.btn-paging{
+    width: 135px;
+    padding: 5px 0px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px
+}
+
+.btn-paging-hover:hover{
+    background-color: #79a206;
+    color: #fff;
+    font-weight: bold;
+}
+
+
+.text-paging{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}

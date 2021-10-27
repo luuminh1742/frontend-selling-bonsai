@@ -1,0 +1,16 @@
+.__login_admin{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 100vw;
+    height: 100vh;
+}
+.__login_form{
+    background-color: #e9ecef;
+    width: 400px;
+    /* height: 300px; */
+    padding: 20px;
+    border-radius: 10px;
+}

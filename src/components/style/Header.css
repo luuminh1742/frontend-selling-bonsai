@@ -1,0 +1,32 @@
+
+:root{
+    --color-focus:#79a206
+}
+
+.item-menu-header{
+    padding: 0px 10px;
+}
+
+@media screen and (max-width:765px){
+    .item-menu-header{
+        text-align: center;
+        border: 1px solid #ddd;
+    }  
+}
+.item-menu-header>a{
+    font-weight: bold;
+}
+.item-menu-header:hover{
+    border-bottom: 2px solid var(--color-focus);
+}
+
+.item-menu-header>a:hover{
+    color:var(--color-focus) !important;
+}
+
+.total-item-card{
+    position: relative;
+    left: 25px;
+    top: -10px;
+    color: var(--color-focus);
+}

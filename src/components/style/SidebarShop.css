@@ -1,0 +1,33 @@
+.sidebar-shop-title{
+    font-size: 38px;
+    line-height: 50px;
+    font-family: "Lora", serif;
+    margin-bottom: 9px;
+}
+.sidebar-shop-categories{
+    padding: 0 15px;
+}
+.sidebar-shop-categories ul{
+    list-style: none;
+    padding-left: 0px !important;
+}
+
+.sidebar-shop-categories ul li{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.sidebar-shop-categories ul li:hover{
+    background-color: rgb(121, 162, 6);
+    color: #fff;
+    border-radius: 10px;
+}
+
+.menu-sidebar-shop-active{
+    background-color: rgb(121, 162, 6);
+    color: #fff;
+    border-radius: 10px;
+}
