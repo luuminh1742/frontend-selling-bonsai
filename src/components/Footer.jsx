@@ -1,22 +1,15 @@
 import React from 'react'
-import { Button, Container } from 'reactstrap'
-import {AiOutlineUp} from 'react-icons/ai'
+import { Container } from 'reactstrap'
 
 
 function Footer() {
     return (
-        <footer className='border pt-4 pb-4'>
-            {/* <button style={{
-                position:'absolute',
-                right:50,
-                bottom:50
-            }}>
-                <i class="fas fa-angle-double-up"></i>
-            </button> */}
+        <footer className='border-top pt-4 pb-4'>
+            
             <Container className='d-flex justify-content-between'>
                 <div>© 2021 By Lưu Bá Minh</div>
                 <div>
-                    <a style={{ ...styleSocialItem }}>
+                    <a href='https://www.facebook.com/minhlb1742/' target='_blank' style={{ ...styleSocialItem }}>
                         <i class="fab fa-facebook display-6"></i>
                     </a>
                     <a style={{ ...styleSocialItem }} >
@@ -27,15 +20,7 @@ function Footer() {
                     </a>
                 </div>
             </Container>
-            {/* <Button color='success'
-                style={{
-                    position: 'fixed',
-                    right: 10,
-                    bottom: 10
-                }}
-            >
-                <AiOutlineUp/>
-            </Button> */}
+            
         </footer>
     )
 }

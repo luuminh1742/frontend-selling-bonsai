@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import { Redirect } from 'react-router';
 import { Col, Container, Row } from 'reactstrap'
 import Orders from '../Orders/Orders';
 import ProfileItem from '../ProfileItem';
@@ -46,6 +48,8 @@ const LeftSidebarProfile = ({ activeMenuLeft, handleActiveMenu }) => {
 
 function Profile() {
 
+    const user = useSelector(state=>state.user)
+
     const [activeMenuLeft, setActiveMenuLeft] = useState(1);
 
     const handleActiveMenu = n => {
@@ -55,13 +59,20 @@ function Profile() {
     const switchContent = () => {
         return (
             activeMenuLeft === 1 ? <ProfileItem /> :
-                activeMenuLeft === 2 ? <Orders /> : <ProfileItem />
+                activeMenuLeft === 2 ? <Orders /> : ''
         )
 
     }
 
+    useEffect(() => {
+        document.title ='Profile | X-BONSAI'
+    }, [])
+
     return (
         <div className='pt-5 pb-5 mb-5 mt-5'>
+            {
+                user.Id === null && <Redirect to='/login'/>
+            }
             <Container>
                 <Row>
                     <Col md={3}>

@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
-import { Col, Container, Pagination, PaginationItem, PaginationLink, Row } from 'reactstrap'
+import React, { useEffect, useState } from 'react'
+import { Col, Container, Row } from 'reactstrap'
 import SidebarShop from '../SidebarShop'
-import ProductItem from '../ProductItem'
 import ListProducts from '../ListProducts'
 
 
@@ -13,6 +12,9 @@ function Shop() {
         setCategoryProductActive(id)
     }
 
+    useEffect(() => {
+        document.title ='Shop | X-BONSAI'
+    }, [])
 
     return (
         <Container className='mt-5 mb-5'>

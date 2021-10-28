@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap'
@@ -26,7 +26,7 @@ function Cart() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
-            });
+        });
     }
 
     const handleChangeQuantity = (id, quantity) => {
@@ -41,6 +41,10 @@ function Cart() {
         }
 
     }
+
+    useEffect(() => {
+        document.title = 'Cart | X-BONSAI'
+    }, [])
 
 
 

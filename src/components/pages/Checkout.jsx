@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import { Button, Col, Container, FormGroup, Label, Modal, ModalBody, Row } from 'reactstrap'
+import {  Col, Container, FormGroup, Label, Modal, ModalBody, Row } from 'reactstrap'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import FormatPrice from '../../Utils/FormatPrice'
@@ -161,6 +161,9 @@ function Checkout() {
 
     }
 
+    useEffect(() => {
+        document.title ='Checkout | X-BONSAI'
+    }, [])
 
 
     return (

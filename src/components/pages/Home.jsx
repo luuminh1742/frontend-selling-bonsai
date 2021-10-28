@@ -1,24 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Card, CardBody, CardText, CardTitle, Col, Container, Jumbotron, Row, UncontrolledCarousel } from 'reactstrap'
-import ProductItem from '../ProductItem'
 import CardService from '../Service/CardService'
 import '../style/Home.css'
 import cay1 from '../../assets/img/cay1.jpg'
 import cay2 from '../../assets/img/cay2.jpg'
 import cay3 from '../../assets/img/cay3.jpg'
-import Slides from '../Slides'
 import { Link } from 'react-router-dom'
 
 const items = [
     {
-        src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider3.jpg',
+        src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider2.jpg',
         altText: '',
         caption: '',
         header: '',
         key: '1'
     },
     {
-        src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider2.jpg',
+        src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider3.jpg',
         altText: '',
         caption: '',
         header: '',
@@ -35,6 +33,11 @@ const items = [
 
 
 function Home() {
+
+    useEffect(()=>{
+        document.title ='Home | X-BONSAI'
+    },[])
+
     return (
         <div>
             <Jumbotron className='position-relative'>

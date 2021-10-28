@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import productApi from '../../api/productApi';
 import Banner from '../Banner';
@@ -24,6 +24,7 @@ function ProductDetail() {
         try {
             setLoadData(true)
             let resp = await productApi.getOne(id)
+            document.title =`${resp.Name} | X-BONSAI`
             setProduct(resp)
         } catch (e) {
 
@@ -33,6 +34,7 @@ function ProductDetail() {
     }
 
     const onChangeQuantity = e => {
+        
         setQuantity(Number(e.target.value))
     }
 
@@ -50,6 +52,21 @@ function ProductDetail() {
             });
             return
         }
+
+
+        if (quantity < 1) {
+            toast.error('Number of products must be greater than 0', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+            return
+        }
+
         dispatch({
             type: 'CART_ADD',
             productId: product.Id,
@@ -135,7 +152,13 @@ function ProductDetail() {
                                         </p>
                                         <div className='d-flex'>
                                             <div className='d-flex'>
-                                                <span>Quantity</span>
+                                                <span
+                                                    style={{
+                                                        fontSize: 20,
+                                                        fontWeight: 'bold',
+                                                        padding: '6px 0px'
+                                                    }}
+                                                >Quantity</span>
                                                 <input
                                                     className='form-control'
                                                     type='number'

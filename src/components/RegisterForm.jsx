@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify'
 import { FormGroup, Label, Row } from 'reactstrap'
-import accountApi from '../api/accountApi';
+import accountApi from '../api/accountApi'
+import imgLoad from '../assets/img/loading.gif'
 
 function RegisterForm() {
-
+    const [onLoading, setOnloading] = useState(false)
     const {
         register,
         handleSubmit,
@@ -12,7 +14,7 @@ function RegisterForm() {
     } = useForm()
     const onSubmit = (data) => {
         if(data.Password !== data.RePassword){
-            alert('Mật khẩu không trùng khớp')
+            toastError('Re-enter new password does not match')
             return
         }
         delete data.RePassword
@@ -29,23 +31,45 @@ function RegisterForm() {
             RePassword:''
         })
     }
-
+    const toastSuccess = (message)=>{
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+    const toastError = (message)=>{
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
     const singup = async (data) =>{
         try{
             let resp = await accountApi.register(data)
             if(resp !== null){
-                alert('Đăng ký thành công')
+                toastSuccess('Successful account registration')
                 clearData()
             }else{
-                alert('Đăng ký thất bại')
+                toastError('Account registration failed ')
             }
         }catch(e){
-            alert('Lỗi xử lý dữ liệu')
+            toastError('Data processing error')
         }
     }
 
 
     return (
+        <>
         <form className='card p-2' onSubmit={handleSubmit(onSubmit)}>
             <FormGroup className='pt-1 pb-1'>
                 <Label>Full Name *</Label>
@@ -97,7 +121,27 @@ function RegisterForm() {
                     }}
                 />
             </FormGroup>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </form>
+        {
+                onLoading &&
+                <div>
+                    <img src={imgLoad} alt='' style={{ width: 100 }} />
+                </div>
+            }
+        </>
     )
 }
 

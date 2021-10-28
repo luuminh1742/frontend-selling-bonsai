@@ -19,7 +19,13 @@
 .item-menu-header:hover{
     border-bottom: 2px solid var(--color-focus);
 }
-
+.item-menu-header-active{
+    border-bottom: 2px solid var(--color-focus);
+}
+.item-menu-header-active a{
+    color:var(--color-focus) !important;
+    font-weight: bold;
+}
 .item-menu-header>a:hover{
     color:var(--color-focus) !important;
 }

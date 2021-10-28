@@ -45,13 +45,10 @@ function ModalFormEditProductCategory({ toggle, modal, action, addProductCategor
 
                         <FormGroup>
                             <Label>Category name
-                                {
-                                    action.type === 'EDIT' &&
-                                        <span className='text-warning'> ( Old name: {action.name} ) </span>
-                                }
+                                
                             </Label>
                             <input className='form-control'
-                                {...register('Name', { required: true })}
+                                {...register('Name', { required: true,value:action.type === 'EDIT'?action.name:'' })}
                             />
                             {errors.Name && <p className='text-danger'>Category Name is required.</p>}
                         </FormGroup>

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import LoginForm from '../LoginForm'
 import RegisterForm from '../RegisterForm'
 
 function Login() {
+
+    useEffect(() => {
+        document.title ='Login | X-BONSAI'
+    }, [])
+
     return (
         <div className='pt-5 pb-5 mb-5 mt-5'>
             <Container>

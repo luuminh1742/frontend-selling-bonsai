@@ -16,6 +16,7 @@ function ListProduct({ categoryId }) {
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState(1)
     const [dataProducts, setDataProducts] = useState([])
+    const [search, setSearch] = useState('')
 
     const fetchProducts = async () => {
         try {
@@ -23,7 +24,8 @@ function ListProduct({ categoryId }) {
             const params = {
                 categoryId: categoryId,
                 pageSize: 10,
-                page: page
+                page: page,
+                search: search
             }
             let resp = await productApi.getAll(params)
             //console.log(resp);
@@ -78,7 +80,7 @@ function ListProduct({ categoryId }) {
 
     useEffect(() => {
         fetchProducts()
-    }, [categoryId, page])
+    }, [categoryId, page, search])
 
 
     const handleActionModal = (action) => {
@@ -90,6 +92,10 @@ function ListProduct({ categoryId }) {
 
     const handlePageChange = (pageNumber) => {
         setPage(pageNumber)
+    }
+
+    const handleSearchChange = e => {
+        setSearch(e.target.value)
     }
 
 
@@ -113,7 +119,11 @@ function ListProduct({ categoryId }) {
                     >
                         Add new product
                     </button>
-                    <input placeholder='Search' className='form-control' style={{ width: 200 }} />
+                    <input placeholder='Search name product'
+                        className='form-control'
+                        style={{ width: 200 }}
+                        onChange={handleSearchChange}
+                    />
                 </div>
 
 

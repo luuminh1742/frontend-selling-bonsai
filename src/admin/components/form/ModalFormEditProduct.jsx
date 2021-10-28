@@ -3,8 +3,6 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, FormGroup, Label, C
 import { useForm } from 'react-hook-form'
 import GetBase64Image from '../../../Utils/GetBase64Image'
 import productCategoryApi from '../../../api/productCategoryApi'
-import productApi from '../../../api/productApi'
-import loading from '../../assets/img/loading-23.gif'
 import { CKEditor } from 'ckeditor4-react'
 
 
@@ -251,12 +249,6 @@ const ModalFormEditProduct = ({ modal, toggle, addProduct, actionModal, updatePr
                                     onChange={handleChangeProductDetail}
                                     className='form-control'
                                 />
-                                {/* <textarea
-                                    {...register('ProductDetail',
-                                        { value: actionModal.type === 'EDIT' ? actionModal.data.ProductDetail : '' })}
-                                    className='form-control'
-                                    rows={5}
-                                ></textarea> */}
                             </Col>
                         </FormGroup>
 
