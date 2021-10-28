@@ -9,6 +9,7 @@ import '../style/ProductDetail.css'
 import FormatPrice from '../../Utils/FormatPrice'
 import imgLoad from '../../assets/img/loading.gif'
 import { useDispatch, useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
 
 function ProductDetail() {
     const user = useSelector(state => state.user)
@@ -37,8 +38,16 @@ function ProductDetail() {
 
 
     const handleAddToCart = () => {
-        if(user.Id === null){
-            alert('Bạn cần đăng nhập để mua hàng.')
+        if (user.Id === null) {
+            toast.warn('You need to login to make a purchase!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             return
         }
         dispatch({
@@ -51,6 +60,15 @@ function ProductDetail() {
             productDiscount: product.Discount
 
         })
+        toast.success('Product added to cart!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     useEffect(() => {
@@ -184,6 +202,20 @@ function ProductDetail() {
 
                 </Container>
             </div>
+
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </>
     )
 }

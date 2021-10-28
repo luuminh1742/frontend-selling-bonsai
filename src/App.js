@@ -8,6 +8,7 @@ import { Client } from './pages/Client';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Admin from './pages/Admin';
 import { useSelector } from 'react-redux'
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 

@@ -24,7 +24,7 @@ function Header() {
     const user = useSelector(state => state.user)
     const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
-    
+    // console.log(user);
     const toggle = () => setIsOpen(!isOpen)
 
     const clickLogout = () => {

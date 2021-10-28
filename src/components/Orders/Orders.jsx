@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'reactstrap'
+import { Row } from 'reactstrap'
 import OrderItem from './OrderItem'
 import { menuName } from './MenuName';
-import { createDispatchHook, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import billApi from '../../api/billApi'
+
 
 
 function Orders() {
 
     const user = useSelector(state => state.user)
 
-    const [listBill,setListBill] = useState([])
-
+    const [listBill, setListBill] = useState([])
+    const [loadOrder, setLoadOrder] = useState(true)
 
 
     const [dataMenu, setDataMenu] = useState(menuName);
 
     const handleClickMenu = (id) => {
-
         let newData = dataMenu.map((item, index) => {
             if (index === id) {
                 item.active = true
@@ -36,10 +36,12 @@ function Orders() {
                 accountId: user.Id
             }
             let resp = await billApi.getAll(params)
-            console.log(resp);
+            // console.log(resp);
             setListBill(resp)
         } catch (e) {
 
+        } finally {
+            setLoadOrder(false)
         }
     }
 
@@ -66,8 +68,9 @@ function Orders() {
             </div>
 
             <div className='mt-2'>
-                <OrderItem 
+                <OrderItem
                     listBill={listBill}
+                    loadOrder={loadOrder}
                 />
             </div>
         </Row>

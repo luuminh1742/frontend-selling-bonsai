@@ -8,6 +8,10 @@ export const menuName = [
         active: false
     },
     {
+        name: 'Order confirmed',
+        active: false
+    },
+    {
         name: 'Delivering',
         active: false
     },

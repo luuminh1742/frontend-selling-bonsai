@@ -4,6 +4,7 @@ import './style/ProductItem.css'
 import { AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai'
 import FormatPrice from '../Utils/FormatPrice'
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
 
 
 function ProductItem(props) {
@@ -15,7 +16,15 @@ function ProductItem(props) {
     const handlePressAddToCart = () => {
 
         if (user.Id === null) {
-            alert('Bạn cần đăng nhập để mua hàng')
+            toast.warn('You need to login to make a purchase!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
             return
         }
 
@@ -29,6 +38,15 @@ function ProductItem(props) {
             productDiscount: props.discount
 
         })
+        toast.success('Product added to cart!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 
     const newPrice = Number(props.price) - Number(props.price) * (Number(props.discount) / 100)

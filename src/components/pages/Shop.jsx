@@ -17,13 +17,13 @@ function Shop() {
     return (
         <Container className='mt-5 mb-5'>
             <Row>
-                <Col md={3}>
+                <Col lg={3}>
                     <SidebarShop 
                         categoryProductActive={categoryProductActive}
                         handleCategoryProductActive={handleCategoryProductActive}
                     />
                 </Col>
-                <Col md={9}>
+                <Col lg={9}>
                     <ListProducts 
                         categoryProductActive={categoryProductActive}
                     />

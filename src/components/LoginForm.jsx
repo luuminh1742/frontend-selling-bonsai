@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux';
 import { FormGroup, Label, Row } from 'reactstrap'
 import accountApi from '../api/accountApi';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function LoginForm() {
@@ -37,16 +37,37 @@ function LoginForm() {
 
 
             if (resp.data === null) {
-                alert('Đăng nhập thất bại')
+                toastError('Login failed')
             } else {
-                alert('Đăng nhập thành công')
+                toastSuccess('Logged in successfully')
             }
         } catch (error) {
-            console.log(error);
-            alert('Lỗi đăng nhập')
+            toastError('Login failed')
         }
     }
 
+    const toastSuccess = (message)=>{
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+    const toastError = (message)=>{
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
 
     return (
         <form className='card p-2' onSubmit={handleSubmit(onSubmit)}>
@@ -82,6 +103,19 @@ function LoginForm() {
                     }}
                 />
             </FormGroup>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </form>
     )
 }

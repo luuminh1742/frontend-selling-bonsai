@@ -10,7 +10,8 @@
 .single-product{
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 1px 1px 1px 1px rgb(233, 233, 233);
+    /* box-shadow: 1px 1px 1px 1px rgb(233, 233, 233); */
+    box-shadow:#d8d8d8 0px 0px 10px 2px
 }
 
 .single-product-top{

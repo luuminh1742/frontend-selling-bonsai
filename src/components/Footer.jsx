@@ -1,5 +1,7 @@
 import React from 'react'
-import { Container } from 'reactstrap'
+import { Button, Container } from 'reactstrap'
+import {AiOutlineUp} from 'react-icons/ai'
+
 
 function Footer() {
     return (
@@ -25,6 +27,15 @@ function Footer() {
                     </a>
                 </div>
             </Container>
+            {/* <Button color='success'
+                style={{
+                    position: 'fixed',
+                    right: 10,
+                    bottom: 10
+                }}
+            >
+                <AiOutlineUp/>
+            </Button> */}
         </footer>
     )
 }

@@ -1,29 +1,32 @@
 import React from 'react'
-import { Col, Container, Jumbotron, Row, UncontrolledCarousel } from 'reactstrap'
+import { Card, CardBody, CardText, CardTitle, Col, Container, Jumbotron, Row, UncontrolledCarousel } from 'reactstrap'
 import ProductItem from '../ProductItem'
+import CardService from '../Service/CardService'
 import '../style/Home.css'
-
+import cay1 from '../../assets/img/cay1.jpg'
+import cay2 from '../../assets/img/cay2.jpg'
+import cay3 from '../../assets/img/cay3.jpg'
 
 const items = [
     {
         src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider3.jpg',
-        altText: 'Slide 2',
-        caption: 'Caption 1',
-        header: 'Slide 1 Header',
+        altText: '',
+        caption: '',
+        header: '',
         key: '1'
     },
     {
         src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider2.jpg',
-        altText: 'Slide 2',
-        caption: 'Slide 2',
-        header: 'Slide 2 Header',
+        altText: '',
+        caption: '',
+        header: '',
         key: '2'
     },
     {
         src: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider1.jpg',
-        altText: 'Slide 3',
-        caption: 'Slide 3',
-        header: 'Slide 3 Header',
+        altText: '',
+        caption: '',
+        header: '',
         key: '3'
     }
 ]
@@ -85,36 +88,91 @@ function Home() {
                 <Row>
                     <Col sm={12}>
                         <div class="section_intro_title text-center">
-                            <h2>Featured Products</h2>
+                            <h2>Service</h2>
                         </div>
 
                     </Col>
                 </Row>
                 <Row>
-                    {/* <Col lg={3}>
-                        <ProductItem />
+                    <CardService
+                        img={cay1}
+                        title='Bonsai rental service'
+                    />
+                    <CardService
+                        img={cay2}
+                        title='Service of providing bonsai seeds'
+                    />
+                    <CardService
+                        img={cay3}
+                        title='Service of taking care of bonsai at home'
+                    />
+                </Row>
+
+                <Row>
+                    <Col sm={12}>
+                        <div class="section_intro_title text-center">
+                            <h2>What you get when you shop at X-BONSAI</h2>
+                        </div>
+
                     </Col>
-                    <Col lg={3}>
-                        <ProductItem />
+                </Row>
+                <Row>
+                    <Col md={3}>
+                        <Card style={{minHeight:150}}>
+                            <CardBody className='text-center'>
+                                <CardTitle tag='h5' >
+                                    Largest Selection
+                                </CardTitle>
+                                <CardText>
+                                    We are the largest
+                                    dedicated nursery of bonsai
+                                    trees in the United States.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
-                    <Col lg={3}>
-                        <ProductItem />
+                    <Col md={3}>
+                        <Card style={{minHeight:150}}>
+                            <CardBody className='text-center'>
+                                <CardTitle tag='h5' >
+                                    Best Quality
+                                </CardTitle>
+                                <CardText>
+                                    Loving care means optimal
+                                    health and longevity for
+                                    your bonsai tree.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
-                    <Col lg={3}>
-                        <ProductItem />
+                    <Col md={3}>
+                        <Card style={{minHeight:150}}>
+                            <CardBody className='text-center'>
+                                <CardTitle tag='h5' >
+                                    Experienced Staff
+                                </CardTitle>
+                                <CardText>
+                                    Because we grow them
+                                    at our nursery, we are
+                                    extremely knowledgeable.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
-                    <Col lg={3}>
-                        <ProductItem />
+                    <Col md={3}>
+                        <Card style={{minHeight:150}}>
+                            <CardBody className='text-center'>
+                                <CardTitle tag='h5' >
+                                    Smooth Shipping
+                                </CardTitle>
+                                <CardText>
+                                    Customized shipping
+                                    options ensure your bonsai
+                                    arrive in perfect condition.
+                                </CardText>
+                            </CardBody>
+                        </Card>
                     </Col>
-                    <Col lg={3}>
-                        <ProductItem />
-                    </Col>
-                    <Col lg={3}>
-                        <ProductItem />
-                    </Col>
-                    <Col lg={3}>
-                        <ProductItem />
-                    </Col> */}
                 </Row>
             </Container>
 

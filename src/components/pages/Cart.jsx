@@ -5,6 +5,7 @@ import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap'
 import imgEmptyCart from '../../assets/img/empty-cart.png'
 import FormatPrice from '../../Utils/FormatPrice'
 import { BsTrashFill } from 'react-icons/bs'
+import { toast, ToastContainer } from 'react-toastify'
 
 function Cart() {
 
@@ -17,6 +18,15 @@ function Cart() {
             type: 'CART_DELETE_ITEM',
             productId: id
         })
+        toast.info('Product removed from cart', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
     }
 
     const handleChangeQuantity = (id, quantity) => {
@@ -54,12 +64,12 @@ function Cart() {
                         <table class="table table-bordered table-hover">
                             <thead class="bg-dark text-white table-hover">
                                 <tr>
-                                    <th scope="col">#</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Discount</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,19 +78,7 @@ function Cart() {
                                     cart.products.map((item, index) => {
                                         return (
                                             <tr key={index}>
-                                                <td>
-                                                    <button
-                                                        onClick={() => handleDeleteItemInCart(item.id)}
-                                                        className='border-0 rounded-circle'
-                                                        style={{
-                                                            width: 50,
-                                                            height: 50,
-                                                            fontSize: 22
-                                                        }}
-                                                    >
-                                                        <BsTrashFill className='text-danger' />
-                                                    </button>
-                                                </td>
+
                                                 <td>
                                                     <img
                                                         src={`/wwwroot/images/${item.image}`}
@@ -104,6 +102,19 @@ function Cart() {
                                                 </td>
                                                 <td>{FormatPrice(item.price)} VND</td>
                                                 <td>{item.discount} (%)</td>
+                                                <td>
+                                                    <button
+                                                        onClick={() => handleDeleteItemInCart(item.id)}
+                                                        className='border-0 rounded-circle'
+                                                        style={{
+                                                            width: 50,
+                                                            height: 50,
+                                                            fontSize: 22
+                                                        }}
+                                                    >
+                                                        <BsTrashFill className='text-danger' />
+                                                    </button>
+                                                </td>
                                             </tr>
                                         )
                                     })
@@ -133,7 +144,7 @@ function Cart() {
                                         <hr />
                                         <div className='d-flex justify-content-between'>
                                             <h6>Total</h6>
-                                            <h6>{FormatPrice(cart.total(cart.subtotal(cart.products),cart.shipping))} VND</h6>
+                                            <h6>{FormatPrice(cart.total(cart.subtotal(cart.products), cart.shipping))} VND</h6>
                                         </div>
                                         <div className='d-flex justify-content-end mt-2'>
                                             <Link
@@ -173,8 +184,20 @@ function Cart() {
 
                     </Container>
             }
-
-        </div >
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
+        </div>
     )
 }
 

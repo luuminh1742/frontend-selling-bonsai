@@ -9,6 +9,11 @@ import billDetailApi from '../../api/billDetailApi'
 import billStatusApi from '../../api/billStatusApi'
 import imgLoad from '../../assets/img/loading.gif'
 import imgTrue from '../../assets/img/true.png'
+import { BillStatusData } from '../../constants/BillStatusData'
+
+
+
+
 
 const ModalCheckoutSuccess = ({ modal, toggle,clearCart }) => {
     return (
@@ -55,6 +60,7 @@ const ModalCheckoutSuccess = ({ modal, toggle,clearCart }) => {
 function Checkout() {
 
     const user = useSelector(state => state.user)
+    
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch();
 
@@ -110,28 +116,7 @@ function Checkout() {
     }
     const createBillStatus = async (billId) => {
         try {
-            const data = [
-                {
-                    StatusName: 'Chờ xác nhận',
-                    Code: 0,
-                    Status: false
-                },
-                {
-                    StatusName: 'Đơn hàng đang giao',
-                    Code: 1,
-                    Status: false
-                },
-                {
-                    StatusName: 'Giao hàng thành công',
-                    Code: 2,
-                    Status: false
-                },
-                {
-                    StatusName: 'Hủy đơn hàng',
-                    Code: -1,
-                    Status: false
-                },
-            ]
+            const data = BillStatusData
             for (let i = 0; i < data.length; i++) {
                 await billStatusApi.create({
                     BillId: billId,

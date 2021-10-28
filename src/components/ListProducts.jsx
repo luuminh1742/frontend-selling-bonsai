@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Col,  Row } from 'reactstrap'
+import { Col, Row } from 'reactstrap'
 import ProductItem from './ProductItem'
 import productApi from '../api/productApi'
 import gifLoading from '../assets/img/loading.gif'
 import imgNoProduct from '../assets/img/product_not_found.png'
 import { AiOutlineRight, AiOutlineLeft } from 'react-icons/ai'
 import './style/Paging.css'
+import { ToastContainer,toast } from 'react-toastify'
 
 function ListProducts({ categoryProductActive }) {
 
@@ -55,7 +56,7 @@ function ListProducts({ categoryProductActive }) {
                 <Col md={12} className='border d-flex justify-content-between p-2 mb-3'>
                     <div>
                         <select className='form-control'
-                        onChange={handleChangeFilter}
+                            onChange={handleChangeFilter}
                         >
                             <option value='0'>----- Sort products -----</option>
                             <option value='1'>Sort by price (top)</option>
@@ -64,7 +65,7 @@ function ListProducts({ categoryProductActive }) {
                     </div>
 
                     <div>
-                        <input placeholder='Search' className='form-control' 
+                        <input placeholder='Search product name' className='form-control'
                             onChange={handleChangeSearch}
                         />
                     </div>
@@ -139,6 +140,19 @@ function ListProducts({ categoryProductActive }) {
                 }
 
             </Row>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </>
     )
 }

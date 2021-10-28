@@ -6,7 +6,8 @@ const getLocalStore = () => {
             Email: user.Email,
             FullName: user.FullName,
             RoleCode: user.RoleCode,
-            Phone: user.Phone
+            Phone: user.Phone,
+            Address: user.Address
         }
     }
     return {
