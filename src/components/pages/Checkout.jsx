@@ -10,6 +10,7 @@ import billStatusApi from '../../api/billStatusApi'
 import imgLoad from '../../assets/img/loading.gif'
 import imgTrue from '../../assets/img/true.png'
 import { BillStatusData } from '../../constants/BillStatusData'
+import { toast, ToastContainer } from 'react-toastify'
 
 
 
@@ -82,6 +83,18 @@ function Checkout() {
         })
     }
 
+    
+    const toastError = (message) => {
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
     const createBill = async (data) => {
         try {
             setProcessCheckout(true)
@@ -90,7 +103,7 @@ function Checkout() {
             createBillStatus(resp.Id)
             toggle()
         } catch (e) {
-            alert('Lỗi xử lý đơn hàng')
+            toastError('Order processing error')
         } finally {
             setProcessCheckout(false)
         }
@@ -134,7 +147,7 @@ function Checkout() {
 
     const onSubmit = (data) => {
         if (user.Id === null) {
-            alert('Bạn cần đăng nhập để mua hàng')
+            toastError('You need to login to make a purchase')
             return
         }
 
@@ -142,6 +155,7 @@ function Checkout() {
         data.Shipping = cart.shipping
         data.Subtotal = cart.subtotal(cart.products)
         data.Total = cart.total(cart.subtotal(cart.products), cart.shipping)
+        data.AtStatusCode = 0
         createBill(data)
 
 
@@ -194,7 +208,7 @@ function Checkout() {
                                 <FormGroup className='pt-3'>
                                     <Label>Note</Label>
                                     <textarea className='form-control'
-                                        {...register('Note', { required: true })}
+                                        {...register('Note')}
                                     ></textarea>
                                 </FormGroup>
                                 <FormGroup>
@@ -292,6 +306,19 @@ function Checkout() {
                         : ''
                 }
             </Container>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            {/* Same as */}
+            <ToastContainer />
         </div>
     )
 }

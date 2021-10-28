@@ -6,6 +6,8 @@ import '../style/Home.css'
 import cay1 from '../../assets/img/cay1.jpg'
 import cay2 from '../../assets/img/cay2.jpg'
 import cay3 from '../../assets/img/cay3.jpg'
+import Slides from '../Slides'
+import { Link } from 'react-router-dom'
 
 const items = [
     {
@@ -35,8 +37,16 @@ const items = [
 function Home() {
     return (
         <div>
-            <Jumbotron>
+            <Jumbotron className='position-relative'>
                 <UncontrolledCarousel items={items} />
+                {/* <Slides/> */}
+                <div className='text-banner'>
+                    <h1 className='font-weight-bold'>BIG SALE</h1>
+                    <p className='font-weight-bold'>Discount <span className='text-success'>20%</span> Off For X-BONSAI Member</p>
+                    <Link to='/shop'>
+                        START SHOPPING NOW
+                    </Link>
+                </div>
             </Jumbotron>
 
             <Container className='mt-4 mb-4'>
@@ -118,7 +128,7 @@ function Home() {
                 </Row>
                 <Row>
                     <Col md={3}>
-                        <Card style={{minHeight:150}}>
+                        <Card style={{ minHeight: 150 }}>
                             <CardBody className='text-center'>
                                 <CardTitle tag='h5' >
                                     Largest Selection
@@ -132,7 +142,7 @@ function Home() {
                         </Card>
                     </Col>
                     <Col md={3}>
-                        <Card style={{minHeight:150}}>
+                        <Card style={{ minHeight: 150 }}>
                             <CardBody className='text-center'>
                                 <CardTitle tag='h5' >
                                     Best Quality
@@ -146,7 +156,7 @@ function Home() {
                         </Card>
                     </Col>
                     <Col md={3}>
-                        <Card style={{minHeight:150}}>
+                        <Card style={{ minHeight: 150 }}>
                             <CardBody className='text-center'>
                                 <CardTitle tag='h5' >
                                     Experienced Staff
@@ -160,7 +170,7 @@ function Home() {
                         </Card>
                     </Col>
                     <Col md={3}>
-                        <Card style={{minHeight:150}}>
+                        <Card style={{ minHeight: 150 }}>
                             <CardBody className='text-center'>
                                 <CardTitle tag='h5' >
                                     Smooth Shipping

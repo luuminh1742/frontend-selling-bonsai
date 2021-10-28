@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap'
-import FormatPrice from '../../Utils/FormatPrice'
+import FormatPrice from '../../../Utils/FormatPrice'
 import imgLoading from '../../assets/img/loading.gif'
-import billStatusApi from '../../api/billStatusApi'
+import billStatusApi from '../../../api/billStatusApi'
 import { Link } from 'react-router-dom'
 import { toast, ToastContainer } from 'react-toastify'
-import billApi from '../../api/billApi'
+import billApi from '../../../api/billApi'
 
 
 const ModalBillDetail = ({ toggle, modal, data }) => {
@@ -154,20 +154,20 @@ function OrderItem({ listBill, loadOrder, handleLoadBillItem }) {
         }
     }
 
-    const cancelOrder = async (billId) => {
+    const updateBillStatus = async (billId,code) => {
         try {
             let params = {
                 billId: billId,
                 status: true,
-                code: 1
+                code: code
             }
             let resp = await billStatusApi.update(params)
-            updateBill(billId, 1)
+            updateBill(billId, code)
             if (resp) {
-                toastSuccess('Canceled order successfully')
+                toastSuccess('Update status order successfully')
                 handleLoadBillItem()
             } else {
-                toastError('Canceling failed order')
+                toastError('Update status failed order')
             }
 
         } catch (e) {
@@ -175,17 +175,17 @@ function OrderItem({ listBill, loadOrder, handleLoadBillItem }) {
         }
     }
 
-    const handleCancelOrder = (id) => {
-        cancelOrder(id)
+    const handleCancelOrder = (id,code) => {
+        updateBillStatus(id,code)
         //updateBill(id,1)
     }
 
 
-    const statusBillNow = (BillStatus) => {
+    const statusBillNow = (BillStatus, atCode) => {
 
         let data = {}
         for (let i = BillStatus.length - 1; i >= 0; i--) {
-            if (BillStatus[i].Status) {
+            if (BillStatus[i].Code === atCode) {
                 data = BillStatus[i]
                 break
             }
@@ -212,92 +212,62 @@ function OrderItem({ listBill, loadOrder, handleLoadBillItem }) {
                     </> :
                     listBill.map(item => {
                         return (
-                            <Row className='rounded border p-3 mb-2' key={item.Id}>
+                            <Row className='rounded border p-3 m-2' key={item.Id} style={{ borderRadius: '10px !important' }}>
                                 <Col md={12}>
+
                                     <div className='d-flex justify-content-between'>
+                                        <span>Order Id : #_{item.Id}</span>
                                         <span>
-                                            Order date {item.BillStatus[0].ModifiedDate}
+                                            {statusBillNow(item.BillStatus, item.AtStatusCode)}
                                         </span>
                                         <span>
-                                            {
 
-                                                statusBillNow(item.BillStatus)
-                                            }
+                                            <div>
+                                                <button
+                                                    className='btn btn-primary'
+                                                    onClick={() => {
+                                                        setDataPreview(item)
+                                                        toggle()
+                                                    }}
+                                                >
+                                                    Bill Detail
+                                                </button>
+                                                &nbsp;
+                                                {
+                                                    item.AtStatusCode === 0 ?
+                                                        <>
+                                                            <button className='btn btn-warning'
+                                                                onClick={() => {
+                                                                    handleCancelOrder(item.Id,1)
+                                                                }}
+                                                            >Cancel order</button>
+                                                            &nbsp;
+                                                            <button className='btn btn-success'
+                                                                onClick={() => {
+                                                                    handleCancelOrder(item.Id,2)
+                                                                }}
+                                                            >Order confirmation</button>
+                                                        </>
+                                                        : item.AtStatusCode === 2 ?
+                                                            <button className='btn btn-success'
+                                                                onClick={() => {
+                                                                    handleCancelOrder(item.Id,3)
+                                                                }}
+                                                            >Delivery</button>
+                                                            : item.AtStatusCode === 3 ?
+                                                                <button className='btn btn-success'
+                                                                    onClick={() => {
+                                                                        handleCancelOrder(item.Id,4)
+                                                                    }}
+                                                                >Delivery successful</button>
+                                                                : ''
+
+
+                                                }
+                                            </div>
                                         </span>
                                     </div>
-                                    <hr />
-                                    <table className='w-100 table table-hover'>
-                                        <thead>
-                                            <tr>
-                                                <th>Image</th>
-                                                <th>Name</th>
-                                                <th>Quantity</th>
-                                                <th>Price</th>
-                                                <th>Discount</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                item.BillDetails.map(billDetail => {
-                                                    return (
-                                                        <tr key={billDetail.Id}>
-                                                            <td>
-                                                                <img
-                                                                    src={`/wwwroot/images/${billDetail.Image}`}
-                                                                    alt='img'
-                                                                    width={100}
-                                                                    height={100}
-                                                                />
-                                                            </td>
-                                                            <td>
-                                                                <Link to={`/product-detail/${billDetail.ProductId}`}>
-                                                                    {billDetail.ProductName}
-                                                                </Link>
-                                                            </td>
-                                                            <td>x{billDetail.Quantity}</td>
-                                                            <td>
-                                                                {FormatPrice(billDetail.Price)} VND
-                                                            </td>
-                                                            <td>
-                                                                {billDetail.Discount} %
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            }
 
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td>Subtotal: {FormatPrice(item.Subtotal)} VND</td>
-                                                <td>Shipping: {FormatPrice(item.Shipping)} VND</td>
-                                                <td>Total: {FormatPrice(item.Total)} VND</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <div className='d-flex justify-content-end mt-3'>
-                                        <button
-                                            className='btn btn-primary'
-                                            onClick={() => {
-                                                setDataPreview(item)
-                                                toggle()
-                                            }}
-                                        >
-                                            Bill Detail
-                                        </button>
-                                        &nbsp;
-                                        {
-                                            item.AtStatusCode === 0 &&
-                                            <button className='btn btn-warning'
-                                                onClick={() => {
-                                                    handleCancelOrder(item.Id)
-                                                    handleLoadBillItem()
-                                                }}
-                                            >Cancel order</button>
-
-                                        }
-                                        {/* <button className='btn btn-warning'>Cancel order</button> */}
-                                    </div>
                                 </Col>
                             </Row>
                         )

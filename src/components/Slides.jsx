@@ -1,25 +1,30 @@
 import React from 'react'
-import 'react-slideshow-image/dist/styles.css'
-import { Slide } from 'react-slideshow-image';
-import './style/Slides.css'
+import SimpleImageSlider from "react-simple-image-slider"
 
-function Slides(props) {
-    const data = props.data;
+const images = [
+    {
+        url: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider3.jpg'
+    },
+    {
+        url: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider2.jpg'
+    },
+    {
+        url: 'https://template.hasthemes.com/lukani/lukani/assets/img/slider/slider1.jpg'
+    }
+]
+
+
+function Slides() {
+
     return (
         <div>
-            <Slide easing="ease">
-                {
-                    data.map(item => {
-                        return (
-                            <div className="each-slide">
-                                <div style={{ 'backgroundImage': `url(${item.url})` }}>
-                                    <span>Slide</span>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
-            </Slide>
+            <SimpleImageSlider
+                width={'100%'}
+                height={600}
+                images={images}
+                showBullets={true}
+                showNavs={true}
+            />
         </div>
     )
 }

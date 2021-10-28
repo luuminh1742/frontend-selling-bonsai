@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify';
 import { Col, Label, Row } from 'reactstrap';
 import accountApi from '../api/accountApi'
 
@@ -49,9 +50,9 @@ function ProfileItem() {
                 ...data
             })
 
-            alert('Update success');
+            toastSuccess('Update success');
         } catch (e) {
-            alert('Lỗi')
+            toastError('Error')
         }
     }
 
@@ -65,13 +66,35 @@ function ProfileItem() {
             let resp = await accountApi.updatePassword(dataSubmit)
             
             if (resp) {
-                alert('Password update successful')
+                toastSuccess('Password update successful')
             } else {
-                alert('Old password is incorrect')
+                toastError('Old password is incorrect')
             }
         } catch (e) {
-            alert('Lỗi')
+            toastError('Error')
         }
+    }
+    const toastSuccess = (message)=>{
+        toast.success(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+    const toastError = (message)=>{
+        toast.error(message, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
     }
     const onSubmitInfoProfile = (data) => {
 
@@ -80,7 +103,7 @@ function ProfileItem() {
 
     const onSubmitPassword = (data) => {
         if (data.NewPassword !== data.ReNewPassword) {
-            alert('Re-enter new password does not match')
+            toastError('Re-enter new password does not match')
             return
         }
         //console.log(data);

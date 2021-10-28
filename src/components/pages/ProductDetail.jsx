@@ -174,12 +174,12 @@ function ProductDetail() {
                                                 >
                                                     Description
                                                 </p>
-                                                <p
+                                                {/* <p
                                                     className={productInfoButton === 2 && 'product_info_button_active'}
                                                     onClick={() => setProductInfoButton(2)}
                                                 >
                                                     Review
-                                                </p>
+                                                </p> */}
                                             </div>
                                             <div className='p-3'>
                                                 {
