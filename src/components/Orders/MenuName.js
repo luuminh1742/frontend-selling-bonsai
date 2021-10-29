@@ -5,23 +5,23 @@ export const menuName = [
         active: true
     },
     {
-        code: 1,
+        code: 2,
         name: 'Order confirmed',
         active: false
     },
     {
 
-        code: 2,
+        code: 3,
         name: 'Delivering',
         active: false
     },
     {
-        code: 3,
+        code: 4,
         name: 'Delivered',
         active: false
     },
     {
-        code: 4,
+        code: 1,
         name: 'Cancelled',
         active: false
     }
